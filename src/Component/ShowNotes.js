@@ -7,7 +7,7 @@ const ShowNotes = ({ note }) => {
                 className="bg-light mx-auto rounded-3"
                 style={{ width: "600px" }}
             >
-                <p className="py-2 ps-3 fs-5">{note.note}</p>
+                <p className="py-2 m-0 ps-3 ">{note.note}</p>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useForm } from "react-hook-form";
 import { MdOutlineStickyNote2 } from "react-icons/md";
@@ -10,9 +10,11 @@ const Home = () => {
     const { register, handleSubmit, reset } = useForm();
 
     console.log(notes);
-    fetch("http://localhost:5000/note")
-        .then((res) => res.json())
-        .then((data) => setNotes(data));
+    useEffect(() => {
+        fetch("http://localhost:5000/note")
+            .then((res) => res.json())
+            .then((data) => setNotes(data));
+    }, []);
 
     const onSubmit = (data) => {
         fetch("http://localhost:5000/note", {
