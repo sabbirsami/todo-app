@@ -15,19 +15,21 @@ const ShowNotes = ({ note }) => {
     };
     return (
         <div className=" pt-2 ps-1">
-            <div
-                className="bg-light mx-auto shadow rounded-3"
-                style={{ width: "600px" }}
-            >
-                <div className="d-flex align-items-center justify-content-between">
-                    <div>
-                        <p className="py-2 m-0 ps-3 ">{note.note}</p>
-                    </div>
-                    <div>
+            <div className="container">
+                <div className="col-lg-6 mx-auto">
+                    <div class="input-group mb-1">
+                        <input
+                            value={note.note}
+                            readOnly
+                            class="form-control bg-light"
+                            placeholder="Write your note hare..."
+                            aria-describedby="basic-addon2"
+                        />
                         <button
                             onClick={() => handleDelete(note._id)}
                             type="submit"
-                            className="btn btn-light text-danger"
+                            class="btn btn-light text-danger"
+                            id="basic-addon2"
                         >
                             <AiOutlineDelete />
                         </button>

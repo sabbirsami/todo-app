@@ -1,14 +1,6 @@
 .background {
     background-color: #040723;
 }
-input {
-    width: 600px;
-    height: 50px;
-}
-
-.to_do_form button[type="submit"] {
-    margin-left: -50px;
-}
 input :focus {
     border: none;
 }

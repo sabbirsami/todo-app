@@ -43,7 +43,7 @@ const Home = () => {
                         <div className="container">
                             <div className=" ">
                                 <div className="col-lg-6 mx-auto">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group input-group-lg mb-3">
                                         <input
                                             {...register("note")}
                                             type="text"
@@ -53,7 +53,7 @@ const Home = () => {
                                         />
                                         <button
                                             type="submit"
-                                            class="btn btn-danger"
+                                            class="btn btn-success "
                                             id="basic-addon2"
                                         >
                                             <FiPlus></FiPlus>
