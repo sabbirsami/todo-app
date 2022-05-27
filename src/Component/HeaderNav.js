@@ -9,15 +9,17 @@ const HeaderNav = () => {
             <Navbar
                 collapseOnSelect
                 expand="lg"
-                className="background py-3"
+                className="background py-3 fixed-top"
                 variant="dark"
             >
                 <Container>
-                    <Navbar.Brand href="#home">Hi Sami</Navbar.Brand>
+                    <Link to="/" className="fs-4 text-light nav-link">
+                        Hi Sami
+                    </Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto">
-                            <small className="text-secondary my-auto">
+                            <small className="text-secondary my-auto animated_text">
                                 If you want to save data please login{" "}
                                 <BsArrowRightShort></BsArrowRightShort>{" "}
                             </small>

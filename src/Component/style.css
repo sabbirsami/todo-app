@@ -12,3 +12,14 @@ input {
 input :focus {
     border: none;
 }
+.animated_text {
+    animation: login 5s infinite;
+}
+@keyframes login {
+    from {
+        left: 30px;
+    }
+    to {
+        right: 0px;
+    }
+}

@@ -30,37 +30,39 @@ const Home = () => {
             });
     };
     return (
-        <div className="background" style={{ height: "100vh" }}>
-            <div className="header_text text-light text-center py-5">
-                <h1 className=" mt-lg-5 ">
-                    To Do Notes <MdOutlineStickyNote2 />
-                </h1>
-                <p className="text-secondary">Add your list hare</p>
-            </div>
-            <div className="to_do_form mx-auto py-3">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="note_input_field mx-auto  text-center">
-                        <div className=" px-2 py-3 rounded-3 d-inline">
-                            <div className=" bg-light d-inline py-2 rounded-3">
-                                <input
-                                    className="border-0 me-3 px-3 pb-1 fs-5 bg-light rounded-3"
-                                    placeholder="Write your note hare..."
-                                    {...register("note")}
-                                />
-                                <button
-                                    type="submit"
-                                    className="border-0 mb-2 p-1 bg-white text-success rounded-3 "
-                                >
-                                    <FiPlus></FiPlus>
-                                </button>
+        <div className="background pt-5" style={{ height: "100vh" }}>
+            <div className="pt-3">
+                <div className="header_text text-light text-center py-5">
+                    <h1 className=" mt-lg-5 ">
+                        To Do Notes <MdOutlineStickyNote2 />
+                    </h1>
+                    <p className="text-secondary">Add your list hare</p>
+                </div>
+                <div className="to_do_form mx-auto py-3">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="note_input_field mx-auto  text-center">
+                            <div className=" px-2 py-3 rounded-3 d-inline">
+                                <div className=" bg-light d-inline py-2 rounded-3">
+                                    <input
+                                        className="border-0 me-3 px-3 pb-1 fs-5 bg-light rounded-3"
+                                        placeholder="Write your note hare..."
+                                        {...register("note")}
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="border-0 mb-2 p-1 bg-white text-success rounded-3 "
+                                    >
+                                        <FiPlus></FiPlus>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                {notes.map((note, index) => (
+                    <ShowNotes key={index} note={note}></ShowNotes>
+                ))}
             </div>
-            {notes.map((note, index) => (
-                <ShowNotes key={index} note={note}></ShowNotes>
-            ))}
         </div>
     );
 };
