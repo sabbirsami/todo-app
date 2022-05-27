@@ -6,7 +6,7 @@ input {
     height: 50px;
 }
 
-button[type="submit"] {
+.to_do_form button[type="submit"] {
     margin-left: -50px;
 }
 input :focus {
