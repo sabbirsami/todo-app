@@ -8,6 +8,9 @@ import ShowNotes from "./ShowNotes";
 const Home = () => {
     const [notes, setNotes] = useState([]);
     console.log(notes);
+    fetch("http://localhost:5000/note")
+        .then((res) => res.json())
+        .then((data) => setNotes(data));
 
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
