@@ -9,3 +9,6 @@ input {
 button[type="submit"] {
     margin-left: -50px;
 }
+input :focus {
+    border: none;
+}
