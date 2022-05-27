@@ -38,11 +38,11 @@ const Home = () => {
                 </h1>
                 <p className="text-secondary">Add your list hare</p>
             </div>
-            <div className="to_do_form mx-auto">
+            <div className="to_do_form mx-auto py-3">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="note_input_field mx-auto  text-center">
                         <div className=" px-2 py-3 rounded-3 d-inline">
-                            <div className=" bg-success d-inline py-2 rounded-3">
+                            <div className=" bg-light d-inline py-2 rounded-3">
                                 <input
                                     className="border-0 me-3 px-3 pb-1 fs-5 bg-light rounded-3"
                                     placeholder="Write your note hare..."
@@ -50,7 +50,7 @@ const Home = () => {
                                 />
                                 <button
                                     type="submit"
-                                    className="border-0 mb-2 bg-white shadow rounded-3 "
+                                    className="border-0 mb-2 p-1 bg-white text-success rounded-3 "
                                 >
                                     <FiPlus></FiPlus>
                                 </button>
