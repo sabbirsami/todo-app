@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import "./style.css";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { MdOutlineStickyNote2 } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
+import ShowNotes from "./ShowNotes";
 
 const Home = () => {
     const [notes, setNotes] = useState([]);
     console.log(notes);
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
-        setNotes(data.example);
+        fetch("http://localhost:5000/note", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+                reset();
+            });
     };
     return (
         <div className="background" style={{ height: "100vh" }}>
@@ -27,9 +38,9 @@ const Home = () => {
                         <div className=" px-2 py-3 rounded-3 d-inline">
                             <div className=" bg-success d-inline py-2 rounded-3">
                                 <input
-                                    className="border-0 me-3 ps-3 pb-1 fs-5 bg-light rounded-3"
+                                    className="border-0 me-3 px-3 pb-1 fs-5 bg-light rounded-3"
                                     placeholder="Write your note hare..."
-                                    {...register("example")}
+                                    {...register("note")}
                                 />
                                 <button
                                     type="submit"
