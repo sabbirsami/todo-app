@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { BsGoogle } from "react-icons/bs";
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
@@ -58,6 +59,26 @@ const Login = () => {
                                 </Button>
                             </div>
                         </Form>
+                        <div className="col-lg-5 mx-auto">
+                            <div className="d-flex justify-content-center align-items-center pt-3">
+                                <div className="col-5">
+                                    <hr />
+                                </div>
+                                <p className="m-2">OR</p>
+                                <div className="col-5">
+                                    <hr />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-5 mx-auto mt-1">
+                            <button
+                                className="w-100 btn btn-outline-light"
+                                type="submit"
+                            >
+                                <BsGoogle></BsGoogle>
+                                <span className="ps-2">Login With google</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

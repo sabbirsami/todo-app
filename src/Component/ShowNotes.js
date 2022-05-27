@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const ShowNotes = ({ note }) => {
@@ -29,7 +28,6 @@ const ShowNotes = ({ note }) => {
                             onClick={() => handleDelete(note._id)}
                             type="submit"
                             class="btn btn-light text-danger"
-                            id="basic-addon2"
                         >
                             <AiOutlineDelete />
                         </button>
