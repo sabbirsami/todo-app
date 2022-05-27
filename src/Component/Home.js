@@ -40,20 +40,25 @@ const Home = () => {
                 </div>
                 <div className="to_do_form mx-auto py-3">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="note_input_field mx-auto  text-center">
-                            <div className=" px-2 py-3 rounded-3 d-inline">
-                                <div className=" bg-light d-inline py-2 rounded-3">
-                                    <input
-                                        className="border-0 me-3 px-3 pb-1 fs-5 bg-light rounded-3"
-                                        placeholder="Write your note hare..."
-                                        {...register("note")}
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="border-0 mb-2 p-1 bg-white text-success rounded-3 "
-                                    >
-                                        <FiPlus></FiPlus>
-                                    </button>
+                        <div className="container">
+                            <div className=" ">
+                                <div className="col-lg-6 mx-auto">
+                                    <div class="input-group mb-3">
+                                        <input
+                                            {...register("note")}
+                                            type="text"
+                                            class="form-control input-group-lg"
+                                            placeholder="Write your note hare..."
+                                            aria-describedby="basic-addon2"
+                                        />
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                            id="basic-addon2"
+                                        >
+                                            <FiPlus></FiPlus>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
