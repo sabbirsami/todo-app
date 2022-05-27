@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BsArrowRightShort } from "react-icons/bs";
 
 const HeaderNav = () => {
     return (
@@ -8,7 +9,7 @@ const HeaderNav = () => {
             <Navbar
                 collapseOnSelect
                 expand="lg"
-                className="background"
+                className="background py-3"
                 variant="dark"
             >
                 <Container>
@@ -16,7 +17,16 @@ const HeaderNav = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto">
-                            <Link to="/login">Login</Link>
+                            <small className="text-secondary my-auto">
+                                If you want to save data please login{" "}
+                                <BsArrowRightShort></BsArrowRightShort>{" "}
+                            </small>
+                            <Link to="/login" className="nav-link text-white">
+                                Login
+                            </Link>
+                            <Link to="/login" className="nav-link text-white">
+                                Sign Up
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
