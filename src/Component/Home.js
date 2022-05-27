@@ -9,7 +9,6 @@ const Home = () => {
     const [notes, setNotes] = useState([]);
     const { register, handleSubmit, reset } = useForm();
 
-    console.log(notes);
     useEffect(() => {
         fetch("http://localhost:5000/note")
             .then((res) => res.json())

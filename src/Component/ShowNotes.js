@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const ShowNotes = ({ note }) => {
+    const [deletedId, setDeletedId] = useState([]);
+    console.log(deletedId);
     return (
         <div className=" pt-2 ps-1">
             <div
@@ -13,7 +15,10 @@ const ShowNotes = ({ note }) => {
                         <p className="py-2 m-0 ps-3 ">{note.note}</p>
                     </div>
                     <div>
-                        <button className="btn btn-light text-danger">
+                        <button
+                            onClick={() => setDeletedId(note._id)}
+                            className="btn btn-light text-danger"
+                        >
                             <AiOutlineDelete />
                         </button>
                     </div>
