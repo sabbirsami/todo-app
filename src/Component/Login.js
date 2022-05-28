@@ -55,7 +55,7 @@ const Login = () => {
                                     className="w-100"
                                     type="submit"
                                 >
-                                    Submit
+                                    Login
                                 </Button>
                             </div>
                         </Form>
