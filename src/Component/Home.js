@@ -79,7 +79,11 @@ const Home = () => {
                     </form>
                 </div>
                 {notes.map((note, index) => (
-                    <ShowNotes key={index} note={note}></ShowNotes>
+                    <ShowNotes
+                        key={index}
+                        note={note}
+                        setNotes={setNotes}
+                    ></ShowNotes>
                 ))}
             </div>
         </div>

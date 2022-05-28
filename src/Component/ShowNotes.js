@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 
-const ShowNotes = ({ note }) => {
+const ShowNotes = ({ note, setNotes }) => {
     const handleDelete = (id) => {
         console.log(id);
         fetch(`http://localhost:5000/note/${id}`, {
