@@ -5,17 +5,32 @@ import { BsGoogle } from "react-icons/bs";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, googleUser, googleLoading, googleError] =
+        useSignInWithGoogle(auth);
 
     // CONDITION----------------
-    if (loading) {
+    if (googleLoading) {
         return <Loading></Loading>;
     }
+    if (googleError) {
+        return (
+            <div>
+                <p>googleError: {googleError.message}</p>
+            </div>
+        );
+    }
+    if (googleUser) {
+        navigate("/");
+    }
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        console.log(data);
+    };
     return (
         <div
             className="background d-flex align-items-center justify-content-center"
@@ -25,7 +40,7 @@ const Login = () => {
                 <div>
                     <h1 className="text-center text-light">Login</h1>
                     <div className="text-light">
-                        <Form>
+                        <Form onSubmit={handleSubmit(onSubmit)}>
                             <Form.Group
                                 className="mb-3"
                                 controlId="formBasicEmail"
@@ -82,6 +97,7 @@ const Login = () => {
                         </div>
                         <div className="col-lg-5 mx-auto mt-1">
                             <button
+                                onClick={() => signInWithGoogle()}
                                 className="w-100 btn btn-outline-light"
                                 type="submit"
                             >
