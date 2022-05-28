@@ -2,7 +2,10 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { BsGoogle } from "react-icons/bs";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+    useCreateUserWithEmailAndPassword,
+    useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
@@ -12,24 +15,27 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const [signInWithGoogle, googleUser, googleLoading, googleError] =
         useSignInWithGoogle(auth);
+    const [createUserWithEmailAndPassword, user, loading, error] =
+        useCreateUserWithEmailAndPassword(auth);
 
     // CONDITION----------------
-    if (googleLoading) {
+    if (googleLoading || loading) {
         return <Loading></Loading>;
     }
-    if (googleError) {
+    if (googleError || error) {
         return (
             <div>
                 <p>googleError: {googleError.message}</p>
             </div>
         );
     }
-    if (googleUser) {
+    if (googleUser || user) {
         navigate("/");
     }
 
     const onSubmit = (data) => {
         console.log(data);
+        createUserWithEmailAndPassword(data.email, data.password);
     };
     return (
         <div
