@@ -12,6 +12,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home></Home>}></Route>
                 <Route path="/login" element={<Login></Login>}></Route>
+                <Route path="/singUp" element={<Login></Login>}></Route>
             </Routes>
             <Toaster position="top-center" reverseOrder={false} />
         </div>

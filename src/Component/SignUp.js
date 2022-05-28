@@ -3,23 +3,26 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { BsGoogle } from "react-icons/bs";
 import {
-    useSignInWithEmailAndPassword,
+    useCreateUserWithEmailAndPassword,
     useSignInWithGoogle,
+    useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
     const navigate = useNavigate();
+
     const { register, handleSubmit } = useForm();
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] =
         useSignInWithGoogle(auth);
-    const [signInWithEmailAndPassword, user, loading, error] =
-        useSignInWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, error] =
+        useCreateUserWithEmailAndPassword(auth);
 
     // CONDITION----------------
-    if (googleLoading || loading) {
+    if (googleLoading || loading || updating) {
         return <Loading></Loading>;
     }
     if (googleError || error) {
@@ -33,9 +36,10 @@ const Login = () => {
         navigate("/");
     }
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data);
-        signInWithEmailAndPassword(data.email, data.password);
+        createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile(data.name);
     };
     return (
         <div
@@ -44,9 +48,25 @@ const Login = () => {
         >
             <div className="container ">
                 <div>
-                    <h1 className="text-center text-light">Login</h1>
+                    <h1 className="text-center text-light">Sign Up</h1>
                     <div className="text-light">
                         <Form onSubmit={handleSubmit(onSubmit)}>
+                            <Form.Group
+                                className="mb-3"
+                                controlId="formBasicEmail"
+                            >
+                                <div className="col-lg-5 mx-auto">
+                                    <Form.Label>Your Name</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter your name"
+                                        {...register("name", {
+                                            required: true,
+                                            maxLength: 20,
+                                        })}
+                                    />
+                                </div>
+                            </Form.Group>
                             <Form.Group
                                 className="mb-3"
                                 controlId="formBasicEmail"
@@ -86,7 +106,7 @@ const Login = () => {
                                     className="w-100"
                                     type="submit"
                                 >
-                                    Login
+                                    Sign Up
                                 </Button>
                             </div>
                         </Form>
@@ -108,7 +128,9 @@ const Login = () => {
                                 type="submit"
                             >
                                 <BsGoogle></BsGoogle>
-                                <span className="ps-2">Login With google</span>
+                                <span className="ps-2">
+                                    Sign Up With google
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -118,4 +140,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
