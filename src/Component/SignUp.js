@@ -39,7 +39,7 @@ const SignUp = () => {
     const onSubmit = async (data) => {
         console.log(data);
         createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile(data.name);
+        await updateProfile({ displayName: data.name });
     };
     return (
         <div
@@ -78,7 +78,6 @@ const SignUp = () => {
                                         placeholder="Enter email"
                                         {...register("email", {
                                             required: true,
-                                            maxLength: 20,
                                         })}
                                     />
                                 </div>

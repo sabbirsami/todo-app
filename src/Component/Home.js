@@ -4,30 +4,40 @@ import { useForm } from "react-hook-form";
 import { MdOutlineStickyNote2 } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
 import ShowNotes from "./ShowNotes";
+import auth from "../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Home = () => {
     const [notes, setNotes] = useState([]);
+    console.log(notes);
     const { register, handleSubmit, reset } = useForm();
+    const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
-        fetch("http://localhost:5000/note")
-            .then((res) => res.json())
-            .then((data) => setNotes(data));
+        if (user) {
+            fetch("http://localhost:5000/note")
+                .then((res) => res.json())
+                .then((data) => setNotes(data));
+        }
     }, []);
 
     const onSubmit = (data) => {
-        fetch("http://localhost:5000/note", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Success:", data);
-                reset();
-            });
+        if (user) {
+            fetch("http://localhost:5000/note", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Success:", data);
+                    reset();
+                });
+        } else {
+            setNotes([data, ...notes]);
+        }
     };
     return (
         <div className="background pt-5" style={{ height: "100vh" }}>
