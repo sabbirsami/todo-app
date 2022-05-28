@@ -2,9 +2,19 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { BsGoogle } from "react-icons/bs";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
+import Loading from "./Loading";
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
+    // CONDITION----------------
+    if (loading) {
+        return <Loading></Loading>;
+    }
+
     const onSubmit = (data) => console.log(data);
     return (
         <div
