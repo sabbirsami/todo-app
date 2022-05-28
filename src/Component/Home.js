@@ -19,16 +19,20 @@ const Home = () => {
                 .then((res) => res.json())
                 .then((data) => setNotes(data));
         }
-    }, []);
+    }, [user]);
 
     const onSubmit = (data) => {
+        const userNote = {
+            note: data.note,
+            email: user.email,
+        };
         if (user) {
             fetch("http://localhost:5000/note", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(userNote),
             })
                 .then((response) => response.json())
                 .then((data) => {
