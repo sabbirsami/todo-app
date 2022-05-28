@@ -2,8 +2,12 @@ import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BsArrowRightShort } from "react-icons/bs";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 
 const HeaderNav = () => {
+    const [user, loading, error] = useAuthState(auth);
+
     return (
         <div>
             <Navbar
@@ -14,7 +18,7 @@ const HeaderNav = () => {
             >
                 <Container>
                     <Link to="/" className="fs-4 text-light nav-link">
-                        Hi Sami
+                        Hi {user ? user.displayName : ""}
                     </Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
