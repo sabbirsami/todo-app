@@ -6,6 +6,7 @@ import { FiPlus } from "react-icons/fi";
 import ShowNotes from "./ShowNotes";
 import auth from "../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "./Loading";
 
 const Home = () => {
     const [notes, setNotes] = useState([]);
@@ -19,20 +20,26 @@ const Home = () => {
                 .then((res) => res.json())
                 .then((data) => setNotes(data));
         }
-    }, [user]);
+    }, [notes, user]);
+    if (loading) {
+        return <Loading></Loading>;
+    }
 
+    const handleDelete = (e) => {
+        e.preventDefault();
+    };
     const onSubmit = (data) => {
-        const userNote = {
-            note: data.note,
-            email: user.email,
-        };
+        // const userNote = {
+        //     note: data.note,
+        //     email: user.email,
+        // };
         if (user) {
             fetch("http://localhost:5000/note", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(userNote),
+                body: JSON.stringify(data),
             })
                 .then((response) => response.json())
                 .then((data) => {
@@ -46,7 +53,7 @@ const Home = () => {
     return (
         <div className="background pt-5" style={{ height: "100vh" }}>
             <div className="pt-3">
-                <div className="header_text text-light text-center py-5">
+                <div className="header_text text-light text-center pt-5 pb-lg-5">
                     <h1 className=" mt-lg-5 ">
                         To Do Notes <MdOutlineStickyNote2 />
                     </h1>
@@ -80,8 +87,11 @@ const Home = () => {
                 </div>
                 {notes.map((note, index) => (
                     <ShowNotes
+                        index={index}
+                        notes={notes}
                         key={index}
                         note={note}
+                        handleDelete={handleDelete}
                         setNotes={setNotes}
                     ></ShowNotes>
                 ))}

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { AiOutlineDelete } from "react-icons/ai";
+import auth from "../firebase.init";
 
-const ShowNotes = ({ note, setNotes }) => {
+const ShowNotes = ({ note, notes, setNotes, index }) => {
+    console.log(notes);
+
+    const [user, loading, error] = useAuthState(auth);
     const handleDelete = (id) => {
         console.log(id);
         fetch(`http://localhost:5000/note/${id}`, {
@@ -11,6 +16,11 @@ const ShowNotes = ({ note, setNotes }) => {
             .then((data) => {
                 console.log("Success:", data);
             });
+    };
+    const handleTempoDelete = (index) => {
+        console.log(index);
+        const newArray = notes.filter((n) => notes.indexOf(n) !== index);
+        setNotes(newArray);
     };
     return (
         <div className=" pt-2 ps-1">
@@ -24,13 +34,23 @@ const ShowNotes = ({ note, setNotes }) => {
                             placeholder="Write your note hare..."
                             aria-describedby="basic-addon2"
                         />
-                        <button
-                            onClick={() => handleDelete(note._id)}
-                            type="submit"
-                            class="btn btn-light text-danger"
-                        >
-                            <AiOutlineDelete />
-                        </button>
+                        {user ? (
+                            <button
+                                onClick={() => handleDelete(note._id)}
+                                type="submit"
+                                class="btn btn-light text-danger"
+                            >
+                                <AiOutlineDelete />
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => handleTempoDelete(index)}
+                                type="submit"
+                                class="btn btn-light text-danger"
+                            >
+                                <AiOutlineDelete />
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

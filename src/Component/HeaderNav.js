@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { BsArrowRightShort } from "react-icons/bs";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-import { Button } from "bootstrap";
 import { signOut } from "firebase/auth";
 
 const HeaderNav = () => {
