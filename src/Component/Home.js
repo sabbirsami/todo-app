@@ -64,17 +64,17 @@ const Home = () => {
                         <div className="container">
                             <div className=" ">
                                 <div className="col-lg-6 mx-auto">
-                                    <div class="input-group input-group-lg mb-3">
+                                    <div className="input-group input-group-lg mb-3">
                                         <input
                                             {...register("note")}
                                             type="text"
-                                            class="form-control input-group-lg"
+                                            className="form-control input-group-lg"
                                             placeholder="Write your note hare..."
                                             aria-describedby="basic-addon2"
                                         />
                                         <button
                                             type="submit"
-                                            class="btn btn-success "
+                                            className="btn btn-success "
                                             id="basic-addon2"
                                         >
                                             <FiPlus></FiPlus>

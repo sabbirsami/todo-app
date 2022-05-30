@@ -32,7 +32,10 @@ const HeaderNav = () => {
                     <Link to="/" className="fs-4 text-light nav-link">
                         Hi {user ? user.displayName : ""}
                     </Link>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Toggle
+                        aria-controls="responsive-navbar-nav"
+                        className="border-0"
+                    />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto">
                             {user ? (

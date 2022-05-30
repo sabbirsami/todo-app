@@ -26,11 +26,11 @@ const ShowNotes = ({ note, notes, setNotes, index }) => {
         <div className=" pt-2 ps-1">
             <div className="container">
                 <div className="col-lg-6 mx-auto">
-                    <div class="input-group mb-1">
+                    <div className="input-group mb-1">
                         <input
                             value={note.note}
                             readOnly
-                            class="form-control bg-light"
+                            className="form-control bg-light"
                             placeholder="Write your note hare..."
                             aria-describedby="basic-addon2"
                         />
@@ -38,7 +38,7 @@ const ShowNotes = ({ note, notes, setNotes, index }) => {
                             <button
                                 onClick={() => handleDelete(note._id)}
                                 type="submit"
-                                class="btn btn-light text-danger"
+                                className="btn btn-light text-danger"
                             >
                                 <AiOutlineDelete />
                             </button>
@@ -46,7 +46,7 @@ const ShowNotes = ({ note, notes, setNotes, index }) => {
                             <button
                                 onClick={() => handleTempoDelete(index)}
                                 type="submit"
-                                class="btn btn-light text-danger"
+                                className="btn btn-light text-danger"
                             >
                                 <AiOutlineDelete />
                             </button>
