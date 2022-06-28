@@ -9,7 +9,7 @@ const ShowNotes = ({ note, notes, setNotes, index }) => {
     const [user, loading, error] = useAuthState(auth);
     const handleDelete = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/note/${id}`, {
+        fetch(`https://to-do-note-app.herokuapp.com/note/${id}`, {
             method: "DELETE",
         })
             .then((response) => response.json())

@@ -16,7 +16,7 @@ const Home = () => {
 
     useEffect(() => {
         if (user) {
-            fetch("http://localhost:5000/note")
+            fetch("https://to-do-note-app.herokuapp.com/note")
                 .then((res) => res.json())
                 .then((data) => setNotes(data));
         }
@@ -34,7 +34,7 @@ const Home = () => {
         //     email: user.email,
         // };
         if (user) {
-            fetch("http://localhost:5000/note", {
+            fetch("https://to-do-note-app.herokuapp.com/note", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
